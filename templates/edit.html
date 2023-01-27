@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<link rel="icon" src="{% static 'img/twitter.png' %}" />
+<section class="content">
+  <div class="home-col">
+      <div class="img-col">
+          {% load static %}
+          <img src="{% static 'img/twitter.png' %}" class="image" />
+      </div>
+      <div class="text-col">
+          <h3>Edit</h3><br />
+      </div>
+   </div>
+  <section class="post_form">
+    <form action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="logo_user">
+        <div class="logo_bar">
+            {% load static %}
+            <img src="{% static 'img/globe.png' %}" class="home_icon"/>
+      </div>
+      <div class="namebar">
+         <input type="text" name="name" placeholder="Name" value="{{post.name}}" required />
+         <textarea name="body" placeholder="Tell us Anything" required>{{post.body}}</textarea>
+         {%if post.image%}
+         <img style="width: 80%; border-radius:10px;" src="{{post.image.url}}" alt="">
+         {%endif%}
+      <div class="submitt">
+        <div><input type="file" id="files" name="image"></div>
+        <button class="cancelbtn"><a href="{% url 'index' %}" id="cancel" type="submit">Cancel</a></button>
+        <div class="tweet"><input type="submit" value="Tweet" class="button"/></div>
+      </div>
+    </form>
+  </section>
+  
+  <script
+    src="https://code.jquery.com/jquery-3.6.1.js"
+    integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"
+  ></script>
+  <script src="{% static 'js/script.js' %}"></script>
+</section>
+{% endblock %}
